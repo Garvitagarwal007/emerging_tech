@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="back" href="index.html">← All topics</a>
+    <span class="counter" id="counter"></span>
+  </div>
+
+  <div class="hero">
+    <div class="big-icon" id="icon"></div>
+    <h1 id="title"></h1>
+    <p class="tagline" id="tagline"></p>
+  </div>
+
+  <div class="content" id="content">
+    <section class="box">
+      <h2>📖 Overview</h2>
+      <p id="overview"></p>
+    </section>
+
+    <section class="box">
+      <h2>⚙️ How it works</h2>
+      <ol class="steps" id="steps"></ol>
+    </section>
+
+    <section class="box">
+      <h2>🔑 Key terms</h2>
+      <div class="chips" id="terms"></div>
+    </section>
+
+    <section class="box">
+      <h2>🌍 Applications</h2>
+      <ul class="apps" id="apps"></ul>
+    </section>
+
+    <section class="box">
+      <div class="two-col">
+        <div class="pros">
+          <h3>✅ Advantages</h3>
+          <ul id="pros"></ul>
+        </div>
+        <div class="cons">
+          <h3>⚠️ Challenges</h3>
+          <ul id="cons"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>🚀 Future scope</h2>
+      <p id="future"></p>
+    </section>
+
+    <section class="box fact">
+      <h2>💡 Did you know?</h2>
+      <p id="fact"></p>
+    </section>
+
+    <div class="nav" id="nav"></div>
+  </div>
+
+  <script>
+    const topics = {
+      quantum: {
+        icon: "⚛️",
+        title: "Quantum Computing",
+        tagline: "Computing with the strange rules of the quantum world.",
+        overview: "Quantum computing uses the principles of quantum mechanics to process information. Instead of normal bits that are either 0 or 1, it uses qubits, which can be in a mix of both states at the same time. This lets quantum computers attack certain problems much faster than ordinary computers.",
+        steps: [
+          "Information is stored in qubits instead of normal bits.",
+          "Superposition lets a qubit represent 0 and 1 together.",
+          "Entanglement links qubits so they act as one connected system.",
+          "Quantum gates process the qubits, and measuring them gives the final answer."
+        ],
+        terms: [
+          ["Qubit", "the basic unit of quantum information"],
+          ["Superposition", "being in multiple states at once"],
+          ["Entanglement", "qubits linked so one affects the other"],
+          ["Quantum gate", "an operation applied on qubits"]
+        ],
+        apps: [
+          "Cryptography: breaking and building new secure codes",
+          "Medicine: simulating molecules for faster drug discovery",
+          "Logistics: finding the best routes and schedules",
+          "Finance: risk analysis and portfolio optimisation"
+        ],
+        pros: ["Can solve some problems far faster than classical computers", "Good at simulating molecules and materials", "Can improve optimisation and search tasks"],
+        cons: ["Qubits are fragile and easily disturbed by noise", "Needs extremely cold, controlled machines", "Still expensive and limited in size"],
+        future: "Researchers are building more stable qubits and error correction so quantum computers can become practical for chemistry, materials and security. At the same time, new quantum-safe encryption is being developed to protect data in the future.",
+        fact: "Many quantum computers must be cooled to temperatures close to absolute zero, colder than outer space, to keep their qubits stable."
+      },
+
+      robotics: {
+        icon: "🦾",
+        title: "Robotics",
+        tagline: "Machines that sense, think and act in the real world.",
+        overview: "Robotics is the field that designs, builds and programs robots, which are machines that can carry out tasks automatically or with little human help. A robot combines mechanical parts, sensors, controllers and software, and many modern robots also use AI.",
+        steps: [
+          "Sensors (cameras, touch, distance) collect information about the surroundings.",
+          "A controller or computer processes that information.",
+          "Software decides what action to take.",
+          "Actuators such as motors and arms carry out the movement."
+        ],
+        terms: [
+          ["Sensor", "lets the robot sense its environment"],
+          ["Actuator", "motor or part that creates movement"],
+          ["End effector", "the hand or tool at the end of a robot arm"],
+          ["Autonomous", "able to work without human control"]
+        ],
+        apps: [
+          "Manufacturing: welding, assembly and packing in factories",
+          "Healthcare: robot-assisted surgery and rehabilitation",
+          "Warehouses: moving and sorting goods",
+          "Exploration: space rovers and underwater robots"
+        ],
+        pros: ["Works with high accuracy and consistency", "Can do dangerous or repetitive jobs", "Can work long hours without tiring"],
+        cons: ["High cost to build and maintain", "Can replace some human jobs", "Struggles with unpredictable real-world situations"],
+        future: "With better AI and sensors, robots are expected to become more flexible and safer to work beside humans, appearing more in homes, hospitals, farms and delivery services.",
+        fact: "The word \"robot\" comes from a 1920 play by Karel Čapek, and it is based on a Czech word meaning forced labour."
+      },
+
+      cyber: {
+        icon: "🔐",
+        title: "Cybersecurity",
+        tagline: "Keeping systems, networks and data safe from attacks.",
+        overview: "Cybersecurity is the practice of protecting computers, networks, applications and data from unauthorised access, theft and damage. As more of our lives move online, strong security is needed to protect people, businesses and governments.",
+        steps: [
+          "Identify what needs protection, such as data, devices and accounts.",
+          "Protect it using passwords, encryption, firewalls and updates.",
+          "Detect threats by monitoring systems for unusual activity.",
+          "Respond and recover by stopping the attack and restoring systems."
+        ],
+        terms: [
+          ["Encryption", "scrambling data so only authorised users can read it"],
+          ["Firewall", "filters network traffic to block threats"],
+          ["Phishing", "fake messages that trick people into giving information"],
+          ["Two-factor authentication", "a second step to prove who you are"]
+        ],
+        apps: [
+          "Banking: protecting online payments and accounts",
+          "Healthcare: securing patient records",
+          "Government: defending critical infrastructure",
+          "Personal use: safe passwords, secure messaging and backups"
+        ],
+        pros: ["Protects private and financial data", "Builds trust in online services", "Reduces the damage from attacks"],
+        cons: ["Attackers keep inventing new methods", "Human mistakes are a common weakness", "Strong security can be costly and sometimes inconvenient"],
+        future: "AI is being used both by defenders to spot threats quickly and by attackers to create smarter scams, so security will rely more on automation, zero-trust systems and quantum-safe encryption.",
+        fact: "A large share of security breaches involve a human element, such as a weak password or someone clicking a phishing link."
+      },
+
+      "5g": {
+        icon: "📶",
+        title: "5G / 6G",
+        tagline: "Faster wireless networks that respond almost instantly.",
+        overview: "5G is the fifth generation of mobile networks, offering much higher speeds, lower delay (latency) and the ability to connect many more devices than 4G. 6G is the next generation being researched, expected to push speed and intelligence even further.",
+        steps: [
+          "Your device sends and receives data using radio waves.",
+          "Nearby small cells and towers pass the signal along, often using higher frequencies.",
+          "Beamforming points the signal directly toward your device.",
+          "The core network routes the data to the internet with very low delay."
+        ],
+        terms: [
+          ["Latency", "the delay before data starts to transfer"],
+          ["Bandwidth", "how much data can be sent at once"],
+          ["Small cell", "a compact base station covering a small area"],
+          ["Network slicing", "creating separate virtual networks for different needs"]
+        ],
+        apps: [
+          "Streaming and gaming: smooth HD video with little lag",
+          "Smart cities: connected traffic lights and sensors",
+          "Healthcare: remote surgery and telemedicine",
+          "Vehicles: connected and self-driving cars"
+        ],
+        pros: ["Much faster download and upload speeds", "Very low latency", "Can support a huge number of connected devices"],
+        cons: ["Needs many new towers and costly infrastructure", "High-frequency signals travel shorter distances", "Coverage can be uneven in remote areas"],
+        future: "6G is expected to go beyond 5G with even higher speeds and tighter integration with AI and sensing, and it is still in the research stage, with commercial use expected around the 2030s.",
+        fact: "Each new mobile generation has arrived roughly every ten years, from 1G in the 1980s to 5G in the late 2010s."
+      }
+    };
+
+    const keys = Object.keys(topics);
+    const params = new URLSearchParams(window.location.search);
+    const key = params.get("topic");
+    const topic = topics[key];
+
+    function setText(id, text) {
+      document.getElementById(id).textContent = text;
+    }
+
+    function fillList(id, items) {
+      const list = document.getElementById(id);
+      items.forEach(function (text) {
+        const li = document.createElement("li");
+        li.textContent = text;
+        list.appendChild(li);
+      });
+    }
+
+    if (!topic) {
+      document.querySelector(".hero").innerHTML = "<h1>Topic not found</h1>";
+      document.getElementById("content").innerHTML =
+        '<div class="nav"><a href="index.html">← Go back to topics</a></div>';
+    } else {
+      document.title = topic.title;
+      setText("icon", topic.icon);
+      setText("title", topic.title);
+      setText("tagline", topic.tagline);
+      setText("overview", topic.overview);
+      setText("future", topic.future);
+      setText("fact", topic.fact);
+
+      fillList("steps", topic.steps);
+      fillList("apps", topic.apps);
+      fillList("pros", topic.pros);
+      fillList("cons", topic.cons);
+
+      const termBox = document.getElementById("terms");
+      topic.terms.forEach(function (pair) {
+        const div = document.createElement("div");
+        div.className = "chip";
+        div.innerHTML = "<b></b> – <span></span>";
+        div.querySelector("b").textContent = pair[0];
+        div.querySelector("span").textContent = pair[1];
+        termBox.appendChild(div);
+      });
+
+      const index = keys.indexOf(key);
+      setText("counter", (index + 1) + " of " + keys.length);
+
+      const prevKey = keys[(index - 1 + keys.length) % keys.length];
+      const nextKey = keys[(index + 1) % keys.length];
+      document.getElementById("nav").innerHTML =
+        '<a href="topic.html?topic=' + prevKey + '">← ' + topics[prevKey].title + '</a>' +
+        '<a href="topic.html?topic=' + nextKey + '">' + topics[nextKey].title + ' →</a>';
+    }
+  </script>
+
+</body>
+</html>
